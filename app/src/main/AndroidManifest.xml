@@ -8,9 +8,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OnelineDiary_kotlin">
+        android:theme="@style/Theme.OnelineDiary">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.WriteNewDiaryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
