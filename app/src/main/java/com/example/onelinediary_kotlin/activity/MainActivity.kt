@@ -35,5 +35,6 @@ class MainActivity : AppCompatActivity() {
         model.allDiary?.observe(this, Observer<List<Diary>>() {
             mainPagerAdapter.setItem(it)
         })
+
     }
 }
