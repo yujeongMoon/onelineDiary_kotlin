@@ -1,6 +1,9 @@
-package com.example.onelinediary_kotlin
+package com.example.onelinediary_kotlin.database
 
 import androidx.lifecycle.LiveData
+import com.example.onelinediary_kotlin.dao.DiaryDao
+import com.example.onelinediary_kotlin.database.DiaryDatabase
+import com.example.onelinediary_kotlin.entity.Diary
 
 /**
  * repository

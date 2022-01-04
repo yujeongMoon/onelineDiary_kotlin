@@ -6,11 +6,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.onelinediary_kotlin.Diary
-import com.example.onelinediary_kotlin.DiaryViewModel
-import com.example.onelinediary_kotlin.MainPagerAdapter
-import com.example.onelinediary_kotlin.R
+import com.example.onelinediary_kotlin.entity.Diary
+import com.example.onelinediary_kotlin.viewmodel.DiaryViewModel
+import com.example.onelinediary_kotlin.adapter.MainPagerAdapter
 import com.example.onelinediary_kotlin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

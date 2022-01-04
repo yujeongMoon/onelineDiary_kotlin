@@ -1,4 +1,4 @@
-package com.example.onelinediary_kotlin
+package com.example.onelinediary_kotlin.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

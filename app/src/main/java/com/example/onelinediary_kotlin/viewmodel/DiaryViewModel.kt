@@ -1,8 +1,11 @@
-package com.example.onelinediary_kotlin
+package com.example.onelinediary_kotlin.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import com.example.onelinediary_kotlin.database.DiaryDatabase
+import com.example.onelinediary_kotlin.database.DiaryRepository
+import com.example.onelinediary_kotlin.entity.Diary
 
 class DiaryViewModel(application: Application) : AndroidViewModel(application) {
 

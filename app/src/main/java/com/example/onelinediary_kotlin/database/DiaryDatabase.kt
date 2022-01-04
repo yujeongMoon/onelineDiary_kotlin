@@ -1,9 +1,11 @@
-package com.example.onelinediary_kotlin
+package com.example.onelinediary_kotlin.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.onelinediary_kotlin.dao.DiaryDao
+import com.example.onelinediary_kotlin.entity.Diary
 
 /**
  * roomDatabase

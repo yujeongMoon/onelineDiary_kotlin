@@ -1,9 +1,10 @@
-package com.example.onelinediary_kotlin
+package com.example.onelinediary_kotlin.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.onelinediary_kotlin.entity.Diary
 
 /**
  * DAO(Data Access Object) : 데이터에 접근할 수 있는 메소드를 정의해놓은 인터페이스

@@ -1,10 +1,12 @@
-package com.example.onelinediary_kotlin
+package com.example.onelinediary_kotlin.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.onelinediary_kotlin.adapter.viewholder.MainPagerViewHolder
 import com.example.onelinediary_kotlin.databinding.ViewholderMainDiaryBinding
+import com.example.onelinediary_kotlin.entity.Diary
 
 class MainPagerAdapter : RecyclerView.Adapter<MainPagerViewHolder>(){
     private var items: List<Diary> = ArrayList()
