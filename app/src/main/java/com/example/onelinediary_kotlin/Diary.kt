@@ -14,8 +14,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Diary")
 data class Diary(
     @ColumnInfo(name = "diary_id")
-    @PrimaryKey(autoGenerate = true) val diaryId: Int,
-    @ColumnInfo(name = "android_id") val AndroidId: String,
+    @PrimaryKey(autoGenerate = true) val diaryId: Int?,
     val year: String,
     val month: String,
     val day: String,

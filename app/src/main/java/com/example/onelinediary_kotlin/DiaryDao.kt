@@ -1,5 +1,6 @@
 package com.example.onelinediary_kotlin
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -17,6 +18,10 @@ interface DiaryDao {
     fun insertDiary(diary: Diary)
 
     // 메소드를 호출하면 설정한 쿼리대로 동작
-    @Query("SELECT * FROM Diary WHERE android_id = :androidId AND year = :year")
-    fun getAll(androidId: String, year: String) : List<Diary>
+    @Query("SELECT * FROM Diary")
+    fun getAllDiary() : LiveData<List<Diary>>
+
+    // 메소드를 호출하면 설정한 쿼리대로 동작
+    @Query("SELECT * FROM Diary WHERE year = :year")
+    fun getAllDiaryWithYear(year: String) : List<Diary>
 }

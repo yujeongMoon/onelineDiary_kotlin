@@ -1,12 +1,24 @@
 package com.example.onelinediary_kotlin.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.onelinediary_kotlin.R
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.example.onelinediary_kotlin.Diary
+import com.example.onelinediary_kotlin.DiaryViewModel
+import com.example.onelinediary_kotlin.databinding.ActivityWriteNewDiaryBinding
 
 class WriteNewDiaryActivity : AppCompatActivity() {
+    private lateinit var newDiaryBinding: ActivityWriteNewDiaryBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_write_new_diary)
+        newDiaryBinding = ActivityWriteNewDiaryBinding.inflate(layoutInflater)
+        setContentView(newDiaryBinding.root)
+
+        val model: DiaryViewModel by viewModels()
+
+        newDiaryBinding.buttonLayout.setOnClickListener {
+            model.insertDiary(Diary(null, "2022", "02", "04", null, null, "happy", null, null))
+        }
     }
 }

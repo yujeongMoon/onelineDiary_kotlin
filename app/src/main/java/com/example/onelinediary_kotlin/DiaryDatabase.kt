@@ -15,19 +15,22 @@ import androidx.room.RoomDatabase
  */
 @Database(entities = [Diary::class], version = 1)
 abstract class DiaryDatabase : RoomDatabase() {
+    // 데이터베이스와 연결되는 DAO
     abstract fun diaryDao() : DiaryDao
 
     companion object {
+        // 싱글턴패턴으로 데이터베이스 객제 중복 방지
         private var instance: DiaryDatabase? = null
 
         fun getInstance(context: Context) : DiaryDatabase? {
             if (instance == null) {
+                // 동시에 두개의 인스턴스 생성으로 막기 위한 synchronized
                 synchronized(DiaryDatabase::class) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         DiaryDatabase::class.java,
                         "diary-database"
-                    ).build()
+                    ).allowMainThreadQueries().build()
                 }
             }
             return instance
