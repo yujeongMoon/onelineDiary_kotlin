@@ -1,32 +1,24 @@
 package com.example.onelinediary_kotlin.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onelinediary_kotlin.adapter.viewholder.MainPagerViewHolder
 import com.example.onelinediary_kotlin.databinding.ViewholderMainDiaryBinding
-import com.example.onelinediary_kotlin.entity.Diary
+import com.example.onelinediary_kotlin.viewmodel.DiaryViewModel
 
-class MainPagerAdapter : RecyclerView.Adapter<MainPagerViewHolder>(){
-    private var items: List<Diary> = ArrayList()
+class MainPagerAdapter(private val viewModel: DiaryViewModel) : RecyclerView.Adapter<MainPagerViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainPagerViewHolder {
         val mainPagerBinding = ViewholderMainDiaryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MainPagerViewHolder(mainPagerBinding)
+        return MainPagerViewHolder(mainPagerBinding, viewModel)
     }
 
     override fun onBindViewHolder(holder: MainPagerViewHolder, position: Int) {
-        holder.onBind(items[position])
+        holder.onBind()
     }
 
     override fun getItemCount(): Int {
-        return items.size
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setItem(items: List<Diary>) {
-        this.items = items
-        this.notifyDataSetChanged()
+        return Int.MAX_VALUE
     }
 }

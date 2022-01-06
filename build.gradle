@@ -1,6 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    // room을 적용하면서 추가한 사항들
     ext.roomVersion = "2.4.0"
+
     repositories {
         google()
         mavenCentral()

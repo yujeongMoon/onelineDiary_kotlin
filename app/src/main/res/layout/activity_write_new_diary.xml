@@ -77,7 +77,7 @@
                 app:tabGravity="center"
                 app:tabIndicatorHeight="0dp"/>
 
-            <EditText
+            <com.example.onelinediary_kotlin.custom.CharacterWrapEditText
                 android:id="@+id/diary_contents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

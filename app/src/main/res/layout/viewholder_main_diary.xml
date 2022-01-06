@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#80ffe4e1">
+    android:background="#80ffe4e1"
+    android:id="@+id/container">
 
     <ImageView
         android:id="@+id/spring"
@@ -194,12 +195,24 @@
     <!--
         numColumns를 지정하지 않으면 orientation이 적용되지 않는다.
     -->
-    <GridView
+<!--    <GridView-->
+<!--        android:id="@+id/mood_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:numColumns="7"-->
+<!--        android:layout_marginStart="@dimen/main_margin_start"-->
+<!--        android:layout_marginEnd="@dimen/main_margin_end"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/divider"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mood_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:numColumns="7"
         android:layout_marginStart="@dimen/main_margin_start"
         android:layout_marginEnd="@dimen/main_margin_end"
         app:layout_constraintTop_toBottomOf="@+id/divider"
