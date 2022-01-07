@@ -61,41 +61,21 @@ class DiaryViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = DiaryDatabase.getInstance(application)?.let { DiaryRepository(it) }
 
-    val year  = MutableLiveData<String>().apply {
-        value = Utility.getYear()
+    val changedPosition = MutableLiveData<Int>().apply {
+        value = 0
     }
-
-//    val prevMonth = MutableLiveData<Int>().apply {
-//        value = if (month.value?.minus(1) ?: -1 < 0) {
-//            12
-//        } else {
-//            Utility.getMonthToInt()
-//        }
-//    }
-
-    val month  = MutableLiveData<String>().apply {
-        value = "02"
-    }
-
-//    val nextMonth = MutableLiveData<Int>().apply {
-//        value = if (month.value?.plus(1) ?: 13 > 12) {
-//            1
-//        } else {
-//            Utility.getMonthToInt() + 1
-//        }
-//    }
 
     val allDiary: LiveData<List<Diary>>? = repository?.allDiary
 
-    fun getAllDiaryWithYear(year: String) : LiveData<List<Diary>>? {
+    fun getAllDiaryWithYear(year: Int) : LiveData<List<Diary>>? {
         return repository?.getAllDiaryWithYear(year)
     }
 
-    fun getAllDiaryWithMonth(year: String, month: String) : LiveData<List<Diary>>? {
+    fun getAllDiaryWithMonth(year: Int, month: Int) : LiveData<List<Diary>>? {
         return repository?.getAllDiaryWithMonth(year, month)
     }
 
-    fun getAllDiaryWithDay(year: String, month: String, day: String) : LiveData<Diary>? {
+    fun getAllDiaryWithDay(year: Int, month: Int, day: Int) : LiveData<Diary>? {
         return repository?.getAllDiaryWithDay(year, month, day)
     }
 

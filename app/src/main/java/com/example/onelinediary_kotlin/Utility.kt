@@ -1,6 +1,7 @@
 package com.example.onelinediary_kotlin
 
 import android.annotation.SuppressLint
+import android.content.Context
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -61,6 +62,11 @@ class Utility {
         // 일요일로 시작하는 달력에서 필요한 캘린더 아이템 개수를 반환한다.
         fun getCalenderItemCount(year: Int, month: Int) : Int {
             return getDayOfWeek(year, month, 1) - 1 + getLastDayNumberOfMonth(year, month)
+        }
+
+        // 리소스 명을 입력하면 id를 반환한다.
+        fun getResourceId(context: Context, res: String) : Int {
+            return context.resources.getIdentifier(res, "drawable", context.packageName)
         }
     }
 }

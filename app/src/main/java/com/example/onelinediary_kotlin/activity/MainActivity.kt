@@ -2,73 +2,38 @@ package com.example.onelinediary_kotlin.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.widget.ViewPager2
+import com.example.onelinediary_kotlin.Utility
 import com.example.onelinediary_kotlin.adapter.MainPagerAdapter
 import com.example.onelinediary_kotlin.databinding.ActivityMainBinding
-import com.example.onelinediary_kotlin.entity.Diary
 import com.example.onelinediary_kotlin.viewmodel.DiaryViewModel
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mainBinding: ActivityMainBinding
-    private lateinit var mainPagerAdapter: MainPagerAdapter
-
-    // android KTX : 코틀린 확장 프로그램
-    private val viewModel: DiaryViewModel by viewModels()
+    private lateinit var binding: ActivityMainBinding
+    private var adapter: MainPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(mainBinding.root)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        mainPagerAdapter = MainPagerAdapter(viewModel)
-        mainBinding.pager.adapter = mainPagerAdapter
+        // android KTX : 코틀린 확장 프로그램
+        val viewModel: DiaryViewModel by viewModels()
 
-//        mainBinding.pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//            var scrollState = 0
-//            var targetPage = 0;
-//            var prevPage = mainBinding.pager.currentItem;
-//
-//            override fun onPageScrollStateChanged(state: Int) {
-//                super.onPageScrollStateChanged(state)
-//                if (state == ViewPager.SCROLL_STATE_SETTLING)
-//                    prevPage = targetPage
-//                scrollState = state
-//            }
-//
-//            override fun onPageScrolled(
-//                position: Int,
-//                positionOffset: Float,
-//                positionOffsetPixels: Int
-//            ) {
-//                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-//                if (prevPage < position) {
-//                    viewModel.month.value = viewModel.month.value?.plus(1)
-//                } else {
-//                    viewModel.month.value = viewModel.month.value?.minus(1)
-//                }
-//            }
-//
-//            override fun onPageSelected(position: Int) {
-//                super.onPageSelected(position)
-//
-//                targetPage = position
-//
-//            }
-//        })
+        if (adapter == null)
+            adapter = MainPagerAdapter(this, viewModel)
+        binding.pager.adapter = adapter
 
-        viewModel.getAllDiaryWithMonth(viewModel.year.value!!, viewModel.month.value!!)?.observe(this, Observer<List<Diary>>() {
-            Log.d("Mainssss", "change!")
-        })
+        binding.pager.currentItem = Utility.getYearToInt() * 12 + (Utility.getMonthToInt() - 1)
 
-        mainBinding.btnAddNewDiary.setOnClickListener(View.OnClickListener {
+        viewModel.changedPosition.observe(this) {
+            if (it != 0)
+                adapter?.notifyItemChanged(it)
+        }
+
+        binding.btnAddNewDiary.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this, WriteNewDiaryActivity::class.java))
         })
     }

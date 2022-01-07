@@ -15,9 +15,9 @@ import androidx.room.PrimaryKey
 data class Diary(
     @ColumnInfo(name = "diary_id")
     @PrimaryKey(autoGenerate = true) val diaryId: Int?,
-    val year: String,
-    val month: String,
-    val day: String,
+    val year: Int,
+    val month: Int,
+    val day: Int,
     val photo: String?,
     val contents: String?,
     val mood: String,

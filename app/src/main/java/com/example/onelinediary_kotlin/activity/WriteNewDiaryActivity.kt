@@ -21,15 +21,18 @@ class WriteNewDiaryActivity : AppCompatActivity() {
         newDiaryBinding = ActivityWriteNewDiaryBinding.inflate(layoutInflater)
         setContentView(newDiaryBinding.root)
 
+        val model: DiaryViewModel by viewModels()
+
         with(newDiaryBinding) {
+            //TODO 클릭한 날짜를 받아서 표시해야함
             todayDate.text = SimpleDateFormat("yyyy년 MM월 dd일").format(Date())
+
             photo.background = ContextCompat.getDrawable(applicationContext, R.drawable.default_placeholder_image)
         }
 
-        val model: DiaryViewModel by viewModels()
-
         newDiaryBinding.buttonLayout.setOnClickListener {
-            model.insertDiary(Diary(null, "2022", "01", "06", null, newDiaryBinding.diaryContents.text.toString(), "happy", null, null))
+            model.changedPosition.value = 2022 * 12
+            model.insertDiary(Diary(null, 2022, 1, 16, null, newDiaryBinding.diaryContents.text.toString(), "happy", null, null))
         }
     }
 }

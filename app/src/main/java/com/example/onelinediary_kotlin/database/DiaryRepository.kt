@@ -18,15 +18,15 @@ class DiaryRepository(database: DiaryDatabase) {
 
     val allDiary: LiveData<List<Diary>> = diaryDao.getAllDiary()
 
-    fun getAllDiaryWithYear(year: String) : LiveData<List<Diary>> {
+    fun getAllDiaryWithYear(year: Int) : LiveData<List<Diary>> {
         return diaryDao.getAllDiaryWithYear(year)
     }
 
-    fun getAllDiaryWithMonth(year: String, month: String) : LiveData<List<Diary>> {
+    fun getAllDiaryWithMonth(year: Int, month: Int) : LiveData<List<Diary>> {
         return diaryDao.getAllDiaryWithMonth(year, month)
     }
 
-    fun getAllDiaryWithDay(year: String, month: String, day: String) : LiveData<Diary> {
+    fun getAllDiaryWithDay(year: Int, month: Int, day: Int) : LiveData<Diary> {
         return diaryDao.getAllDiaryWithDay(year, month, day)
     }
 
