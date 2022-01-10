@@ -14,13 +14,13 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Diary")
 data class Diary(
     @ColumnInfo(name = "diary_id")
-    @PrimaryKey(autoGenerate = true) val diaryId: Int?,
-    val year: Int,
-    val month: Int,
-    val day: Int,
-    val photo: String?,
-    val contents: String?,
-    val mood: String,
-    val location: String?,
-    val weather: String?
+    @PrimaryKey(autoGenerate = true) val diaryId: Int? = null,
+    var year: Int = 0,
+    var month: Int = 0,
+    var day: Int = 0,
+    var photo: String? = null,
+    var contents: String? = null,
+    var mood: String = "none",
+    var location: String? = null,
+    var weather: String? = null
 )

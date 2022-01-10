@@ -12,19 +12,19 @@ class MainPagerViewHolder(private val binding: ViewholderMainDiaryBinding)
     private val gridLayoutManager = GridLayoutManager(binding.root.context, 7)
 
     fun onBind(position: Int, viewModel: DiaryViewModel) {
-        val _year = position.div(12)
-        val _month = (position.rem(12) + 1)
+        val yearWithPosition = position.div(12)
+        val monthWithPosition = position.rem(12) + 1
 
         with(binding) {
             // 연도, 월 설정
             // layoutPosition
             // adapterPosition
-            year.text = _year.toString()
-            month.text = _month.toString()
+            year.text = yearWithPosition.toString()
+            month.text = monthWithPosition.toString()
 
             // 리사이클러뷰 설정
             moodLayout.layoutManager = gridLayoutManager
-            val mainMoodAdapter = MainMoodAdapter(_year, _month, viewModel.getAllDiaryWithMonth(_year, _month)?.value)
+            val mainMoodAdapter = MainMoodAdapter(yearWithPosition, monthWithPosition, viewModel)
             moodLayout.adapter = mainMoodAdapter
         }
     }

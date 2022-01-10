@@ -9,15 +9,27 @@ import com.example.onelinediary_kotlin.entity.Diary
 import com.example.onelinediary_kotlin.viewmodel.DiaryViewModel
 
 class MainMoodViewHolder(private val binding: ViewholderMoodItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    private var diary: Diary? = null
 
-    fun onBind(day: Int, diary: Diary?) {
+    fun onBind(year: Int, month: Int, day: Int, viewModel: DiaryViewModel) {
          with(binding) {
             if (day <= 0) {
                 tvDay.visibility = View.GONE
                 emoji.visibility = View.GONE
             } else {
                 tvDay.text = day.toString()
-                emoji.setImageResource(Utility.getResourceId(binding.root.context, diary?.mood ?: "circle_gray"))
+
+                val diary = viewModel.getAllDiaryWithDay(year, month, day)?.also {
+                    emoji.setImageResource(Utility.getResourceId(binding.root.context, it.mood))
+                }
+
+                container.setOnClickListener {
+
+                }
+
+                container.setOnLongClickListener(View.OnLongClickListener {
+                    return@OnLongClickListener true
+                })
             }
          }
     }

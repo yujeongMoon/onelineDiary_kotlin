@@ -2,9 +2,7 @@ package com.example.onelinediary_kotlin.dao
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.onelinediary_kotlin.entity.Diary
 import java.time.Month
 
@@ -21,6 +19,10 @@ interface DiaryDao {
     @Insert
     fun insertDiary(diary: Diary)
 
+    // 일기를 DB에서서 삭제다.
+    @Delete
+    fun deleteDiary(diary: Diary)
+
     // 메소드를 호출하면 설정한 쿼리대로 동작
     // 작성한 일기 전체를 가져온다.
     @Query("SELECT * FROM Diary")
@@ -30,11 +32,13 @@ interface DiaryDao {
     @Query("SELECT * FROM Diary WHERE year = :year")
     fun getAllDiaryWithYear(year: Int) : LiveData<List<Diary>>
 
+    // 입력한 연도, 월에 맞는 일기를 불러온다.
     @Query("SELECT * FROM Diary WHERE year = :year AND month = :month")
-    fun getAllDiaryWithMonth(year: Int, month: Int) : LiveData<List<Diary>>
+    fun getAllDiaryWithMonth(year: Int, month: Int) : List<Diary>
 
+    // 입력한 연도, 월, 일에 맞는 일기를 불러온다.
     @Query("SELECT * FROM Diary WHERE year = :year AND month = :month AND day = :day")
-    fun getAllDiaryWithDay(year: Int, month: Int, day: Int) : LiveData<Diary>
+    fun getAllDiaryWithDay(year: Int, month: Int, day: Int) : Diary
 
-    //TODO 월단위 / 일단위로 일기 가져오는 기능, 일기 수정, 삭제 기능 필요
+    //TODO 일기 수정
 }

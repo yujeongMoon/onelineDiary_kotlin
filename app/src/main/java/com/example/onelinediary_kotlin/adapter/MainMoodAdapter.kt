@@ -9,7 +9,7 @@ import com.example.onelinediary_kotlin.databinding.ViewholderMoodItemBinding
 import com.example.onelinediary_kotlin.entity.Diary
 import com.example.onelinediary_kotlin.viewmodel.DiaryViewModel
 
-class MainMoodAdapter(private val year: Int, private val month: Int, private val diaryList: List<Diary>?) : RecyclerView.Adapter<MainMoodViewHolder>() {
+class MainMoodAdapter(private val year: Int, private val month: Int, private val viewModel: DiaryViewModel) : RecyclerView.Adapter<MainMoodViewHolder>() {
     private val startDayInMonth = Utility.getDayOfWeek(year, month, 1) - 1
 
      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainMoodViewHolder {
@@ -19,17 +19,7 @@ class MainMoodAdapter(private val year: Int, private val month: Int, private val
 
     override fun onBindViewHolder(holder: MainMoodViewHolder, position: Int) {
         val day = (position - startDayInMonth) + 1
-
-        if (diaryList != null) {
-            for (diary in diaryList) {
-                if (diary.day == day)
-                    holder.onBind(day, diary)
-                else
-                    holder.onBind(day, null)
-            }
-        } else {
-            holder.onBind(day, null)
-        }
+        holder.onBind(year, month, day, viewModel)
     }
 
     override fun getItemCount(): Int {

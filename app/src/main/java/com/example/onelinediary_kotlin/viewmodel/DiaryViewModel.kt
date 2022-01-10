@@ -1,6 +1,7 @@
 package com.example.onelinediary_kotlin.viewmodel
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -59,11 +60,15 @@ import com.example.onelinediary_kotlin.entity.Diary
 
 class DiaryViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = DiaryDatabase.getInstance(application)?.let { DiaryRepository(it) }
+    private val repository = DiaryRepository.getInstance(application)
 
-    val changedPosition = MutableLiveData<Int>().apply {
-        value = 0
+    val changedPosition = repository?.changedPosition
+
+    fun setChangedPosition(position: Int) {
+        changedPosition?.value = position
     }
+
+    // TODO 오늘의 일기를 썼는지 알 수 있는 플래그와 일기를 담을 객체 필요
 
     val allDiary: LiveData<List<Diary>>? = repository?.allDiary
 
@@ -71,11 +76,11 @@ class DiaryViewModel(application: Application) : AndroidViewModel(application) {
         return repository?.getAllDiaryWithYear(year)
     }
 
-    fun getAllDiaryWithMonth(year: Int, month: Int) : LiveData<List<Diary>>? {
+    fun getAllDiaryWithMonth(year: Int, month: Int) : List<Diary>? {
         return repository?.getAllDiaryWithMonth(year, month)
     }
 
-    fun getAllDiaryWithDay(year: Int, month: Int, day: Int) : LiveData<Diary>? {
+    fun getAllDiaryWithDay(year: Int, month: Int, day: Int) : Diary? {
         return repository?.getAllDiaryWithDay(year, month, day)
     }
 
