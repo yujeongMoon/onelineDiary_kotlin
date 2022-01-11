@@ -1,5 +1,7 @@
 package com.example.onelinediary_kotlin.entity
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -23,4 +25,43 @@ data class Diary(
     var mood: String = "none",
     var location: String? = null,
     var weather: String? = null
-)
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()!!,
+        parcel.readString(),
+        parcel.readString()
+    ) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeValue(diaryId)
+        parcel.writeInt(year)
+        parcel.writeInt(month)
+        parcel.writeInt(day)
+        parcel.writeString(photo)
+        parcel.writeString(contents)
+        parcel.writeString(mood)
+        parcel.writeString(location)
+        parcel.writeString(weather)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Diary> {
+        override fun createFromParcel(parcel: Parcel): Diary {
+            return Diary(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Diary?> {
+            return arrayOfNulls(size)
+        }
+    }
+}

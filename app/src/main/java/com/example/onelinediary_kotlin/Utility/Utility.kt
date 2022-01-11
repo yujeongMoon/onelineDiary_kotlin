@@ -1,47 +1,56 @@
-package com.example.onelinediary_kotlin
+package com.example.onelinediary_kotlin.Utility
 
 import android.annotation.SuppressLint
 import android.content.Context
+import com.example.onelinediary_kotlin.R
+import com.example.onelinediary_kotlin.dto.Mood
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class Utility {
     companion object {
 
+        // 오늘 날짜를 원하는 포맷으로 반환한다.
+        @SuppressLint("SimpleDateFormat")
+        fun getToday(format: String) : String {
+            return SimpleDateFormat(format).format(Date())
+        }
+
         // 현재 연도
         @SuppressLint("SimpleDateFormat")
-        fun getYear() : String {
+        fun getYearToString() : String {
             return SimpleDateFormat("yyyy").format(Date())
         }
 
         // 현재 달
         @SuppressLint("SimpleDateFormat")
-        fun getMonth() : String {
+        fun getMonthToString() : String {
             return SimpleDateFormat("MM").format(Date())
         }
 
         // 현재 일
         @SuppressLint("SimpleDateFormat")
-        fun getDay() : String {
+        fun getDayToString() : String {
             return SimpleDateFormat("dd").format(Date())
         }
 
         // 현재 연도
         @SuppressLint("SimpleDateFormat")
-        fun getYearToInt() : Int {
+        fun getYear() : Int {
             return Calendar.getInstance()[Calendar.YEAR]
         }
 
         // 현재 달
         // 인덱스가 0(1월)부터 시작하기 때문에 1을 더해준다
         @SuppressLint("SimpleDateFormat")
-        fun getMonthToInt() : Int {
+        fun getMonth() : Int {
             return Calendar.getInstance()[Calendar.MONTH] + 1
         }
 
         // 현재 일
         @SuppressLint("SimpleDateFormat")
-        fun getDayToInt() : Int {
+        fun getDay() : Int {
             return Calendar.getInstance()[Calendar.DAY_OF_MONTH]
         }
 
@@ -67,6 +76,28 @@ class Utility {
         // 리소스 명을 입력하면 id를 반환한다.
         fun getResourceId(context: Context, res: String) : Int {
             return context.resources.getIdentifier(res, "drawable", context.packageName)
+        }
+
+        // 오늘 날짜와 비교하여 이전 날짜인지 결과 값을 반환
+        // 이 전이면 true, 이 후이면 false
+        @SuppressLint("SimpleDateFormat")
+        fun isBeforeDay(year: Int, month: Int, day: Int) : Boolean {
+            val dataFormat = SimpleDateFormat("yyyy년 M월 d일")
+
+            val date1 = dataFormat.parse("${year}년 ${month}월 ${day}일")
+            val date2 = dataFormat.parse(getToday("yyyy년 M월 d일"))
+
+            return date1 <= date2
+        }
+        
+        private val emojiArray = arrayOf("love", "happy", "smile", "shy", "thinking", "laughing", "nervous", "angry", "sad", "sick", "dd")
+
+        fun initEmojiStatus() : ArrayList<Mood> {
+            val emojiList = ArrayList<Mood>()
+            for (emoji in emojiArray)
+                emojiList.add(Mood(emoji = emoji))
+
+            return emojiList
         }
     }
 }

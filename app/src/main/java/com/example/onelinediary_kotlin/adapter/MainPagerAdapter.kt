@@ -10,8 +10,8 @@ import com.example.onelinediary_kotlin.viewmodel.DiaryViewModel
 class MainPagerAdapter(private val viewModel: DiaryViewModel) : RecyclerView.Adapter<MainPagerViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainPagerViewHolder {
-        val mainPagerBinding = ViewholderMainDiaryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MainPagerViewHolder(mainPagerBinding)
+        val binding = ViewholderMainDiaryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MainPagerViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MainPagerViewHolder, position: Int) {

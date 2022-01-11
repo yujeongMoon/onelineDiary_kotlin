@@ -2,11 +2,8 @@ package com.example.onelinediary_kotlin.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.onelinediary_kotlin.dao.DiaryDao
-import com.example.onelinediary_kotlin.database.DiaryDatabase
 import com.example.onelinediary_kotlin.entity.Diary
-import java.time.Month
 
 /**
  * repository
@@ -28,28 +25,32 @@ class DiaryRepository(database: DiaryDatabase) {
         }
     }
 
-    private val diaryDao: DiaryDao = database.diaryDao();
-
-    val changedPosition = MutableLiveData<Int>().apply {
-        value = 0
-    }
+    private val diaryDao: DiaryDao = database.diaryDao()
 
     val allDiary: LiveData<List<Diary>> = diaryDao.getAllDiary()
 
-    fun getAllDiaryWithYear(year: Int) : LiveData<List<Diary>> {
-        return diaryDao.getAllDiaryWithYear(year)
+    fun getAllDiary(year: Int) : LiveData<List<Diary>> {
+        return diaryDao.getAllDiary(year)
     }
 
-    fun getAllDiaryWithMonth(year: Int, month: Int) : List<Diary> {
-        return diaryDao.getAllDiaryWithMonth(year, month)
+    fun getAllDiary(year: Int, month: Int) : LiveData<List<Diary>> {
+        return diaryDao.getAllDiary(year, month)
     }
 
-    fun getAllDiaryWithDay(year: Int, month: Int, day: Int) : Diary {
-        return diaryDao.getAllDiaryWithDay(year, month, day)
+    fun getDiary(year: Int, month: Int, day: Int) : Diary {
+        return diaryDao.getDiary(year, month, day)
+    }
+
+    fun getDiaryWithLive(year: Int, month: Int, day: Int) : LiveData<Diary> {
+        return diaryDao.getDiaryWithLive(year, month, day)
     }
 
     fun insertDiary(diary: Diary) {
         diaryDao.insertDiary(diary)
+    }
+
+    fun deleteDiary(diary: Diary) {
+        diaryDao.deleteDiary(diary)
     }
 }
 

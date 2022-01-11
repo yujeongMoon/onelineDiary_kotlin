@@ -5,11 +5,14 @@
       <map>
         <entry key="..\:/Users/yjmoon/Documents/android/onelineDiary_kotlin/app/src/main/res/drawable-v21/app_widget_background.xml" value="0.3463541666666667" />
         <entry key="..\:/Users/yjmoon/Documents/android/onelineDiary_kotlin/app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.3463541666666667" />
+        <entry key="..\:/Users/yjmoon/Documents/android/onelineDiary_kotlin/app/src/main/res/layout/activity_detail_diary.xml" value="0.47685185185185186" />
         <entry key="..\:/Users/yjmoon/Documents/android/onelineDiary_kotlin/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/yjmoon/Documents/android/onelineDiary_kotlin/app/src/main/res/layout/activity_splash.xml" value="0.4583333333333333" />
         <entry key="..\:/Users/yjmoon/Documents/android/onelineDiary_kotlin/app/src/main/res/layout/activity_write_new_diary.xml" value="0.33" />
+        <entry key="..\:/Users/yjmoon/Documents/android/onelineDiary_kotlin/app/src/main/res/layout/dialog_select.xml" value="0.5536458333333333" />
         <entry key="..\:/Users/yjmoon/Documents/android/onelineDiary_kotlin/app/src/main/res/layout/viewholder_main_diary.xml" value="0.45" />
         <entry key="..\:/Users/yjmoon/Documents/android/onelineDiary_kotlin/app/src/main/res/layout/viewholder_mood_item.xml" value="0.38333333333333336" />
+        <entry key="..\:/Users/yjmoon/Documents/android/onelineDiary_kotlin/app/src/main/res/layout/viewholder_select_mood_item.xml" value="0.5536458333333333" />
       </map>
     </option>
   </component>

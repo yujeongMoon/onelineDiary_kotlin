@@ -30,15 +30,18 @@ interface DiaryDao {
 
     // 입력한 연도의 일기들만 불러온다.
     @Query("SELECT * FROM Diary WHERE year = :year")
-    fun getAllDiaryWithYear(year: Int) : LiveData<List<Diary>>
+    fun getAllDiary(year: Int) : LiveData<List<Diary>>
 
     // 입력한 연도, 월에 맞는 일기를 불러온다.
     @Query("SELECT * FROM Diary WHERE year = :year AND month = :month")
-    fun getAllDiaryWithMonth(year: Int, month: Int) : List<Diary>
+    fun getAllDiary(year: Int, month: Int) : LiveData<List<Diary>>
 
     // 입력한 연도, 월, 일에 맞는 일기를 불러온다.
     @Query("SELECT * FROM Diary WHERE year = :year AND month = :month AND day = :day")
-    fun getAllDiaryWithDay(year: Int, month: Int, day: Int) : Diary
+    fun getDiaryWithLive(year: Int, month: Int, day: Int) : LiveData<Diary>
+
+    @Query("SELECT * FROM Diary WHERE year = :year AND month = :month AND day = :day")
+    fun getDiary(year: Int, month: Int, day: Int) : Diary
 
     //TODO 일기 수정
 }

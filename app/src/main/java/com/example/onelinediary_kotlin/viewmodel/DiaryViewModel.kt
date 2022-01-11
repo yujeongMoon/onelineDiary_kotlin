@@ -1,13 +1,13 @@
 package com.example.onelinediary_kotlin.viewmodel
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.onelinediary_kotlin.Utility
-import com.example.onelinediary_kotlin.database.DiaryDatabase
+import com.example.onelinediary_kotlin.R
+import com.example.onelinediary_kotlin.Utility.Utility
 import com.example.onelinediary_kotlin.database.DiaryRepository
+import com.example.onelinediary_kotlin.dto.Mood
 import com.example.onelinediary_kotlin.entity.Diary
 
 /**
@@ -62,30 +62,42 @@ class DiaryViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = DiaryRepository.getInstance(application)
 
-    val changedPosition = repository?.changedPosition
-
-    fun setChangedPosition(position: Int) {
-        changedPosition?.value = position
+    // TODO 일기 작성화면에서 이모지 클릭 상태 변화 저장
+    // 액티비티가 살아있는 동안 유지되어야하는 겂이기 때문에 저장
+    val emojiStatus = MutableLiveData<List<Mood>>().apply {
+        value = Utility.initEmojiStatus()
     }
 
-    // TODO 오늘의 일기를 썼는지 알 수 있는 플래그와 일기를 담을 객체 필요
+    fun initEmojiStatus() {
+        emojiStatus.value = Utility.initEmojiStatus()
+    }
 
     val allDiary: LiveData<List<Diary>>? = repository?.allDiary
 
-    fun getAllDiaryWithYear(year: Int) : LiveData<List<Diary>>? {
-        return repository?.getAllDiaryWithYear(year)
+    fun getAllDiary(year: Int) : LiveData<List<Diary>>? {
+        return repository?.getAllDiary(year)
     }
 
-    fun getAllDiaryWithMonth(year: Int, month: Int) : List<Diary>? {
-        return repository?.getAllDiaryWithMonth(year, month)
+    fun getAllDiary(year: Int, month: Int) : LiveData<List<Diary>>? {
+        return repository?.getAllDiary(year, month)
     }
 
-    fun getAllDiaryWithDay(year: Int, month: Int, day: Int) : Diary? {
-        return repository?.getAllDiaryWithDay(year, month, day)
+    fun getDiary(year: Int, month: Int, day: Int) : Diary? {
+        return repository?.getDiary(year, month, day)
     }
+
+    fun getDiaryWithLive(year: Int, month: Int, day: Int) : LiveData<Diary>? {
+        return repository?.getDiaryWithLive(year, month, day)
+    }
+
+    val getTodayDiary = getDiaryWithLive(Utility.getYear(), Utility.getMonth(), Utility.getDay())
 
     fun insertDiary(diary: Diary) {
         repository?.insertDiary(diary)
+    }
+
+    fun deleteDiary(diary: Diary) {
+        repository?.deleteDiary(diary)
     }
 }
 

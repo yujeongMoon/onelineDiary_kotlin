@@ -9,13 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnelineDiary">
-
         <activity
-            android:name=".activity.WriteNewDiaryActivity"
+            android:name=".activity.DetailDiaryActivity"
             android:exported="true" />
         <activity
+            android:name=".activity.WriteNewDiaryActivity"
+            android:exported="true"
+            android:launchMode="singleTask" />
+        <activity
             android:name=".activity.MainActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:launchMode="singleTask" />
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true">

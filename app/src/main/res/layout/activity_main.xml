@@ -54,7 +54,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/add_circle_outline_black"
+            android:src="@drawable/add_circle"
             app:layout_constraintTop_toTopOf="@+id/main_bottom_layout"
             app:layout_constraintLeft_toLeftOf="@+id/main_bottom_layout"
             app:layout_constraintRight_toRightOf="@+id/main_bottom_layout"
