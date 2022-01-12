@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onelinediary_kotlin.adapter.viewholder.MainPagerViewHolder
 import com.example.onelinediary_kotlin.databinding.ViewholderMainDiaryBinding
-import com.example.onelinediary_kotlin.viewmodel.DiaryViewModel
+import com.example.onelinediary_kotlin.viewmodel.MainViewModel
 
-class MainPagerAdapter(private val viewModel: DiaryViewModel) : RecyclerView.Adapter<MainPagerViewHolder>(){
+class MainPagerAdapter(private val viewModel: MainViewModel) : RecyclerView.Adapter<MainPagerViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainPagerViewHolder {
         val binding = ViewholderMainDiaryBinding.inflate(LayoutInflater.from(parent.context), parent, false)

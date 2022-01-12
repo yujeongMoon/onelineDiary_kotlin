@@ -7,14 +7,14 @@ import com.example.onelinediary_kotlin.Utility.Utility
 import com.example.onelinediary_kotlin.databinding.ViewholderMoodItemBinding
 import com.example.onelinediary_kotlin.dialog.SelectDialog
 import com.example.onelinediary_kotlin.entity.Diary
-import com.example.onelinediary_kotlin.viewmodel.DiaryViewModel
+import com.example.onelinediary_kotlin.viewmodel.MainViewModel
 import java.util.*
 
 class MainMoodViewHolder(private val binding: ViewholderMoodItemBinding) : RecyclerView.ViewHolder(binding.root) {
     private val context = binding.root.context
     private var diary: Diary? = null
 
-    fun onBind(year: Int, month: Int, day: Int, viewModel: DiaryViewModel) {
+    fun onBind(year: Int, month: Int, day: Int, viewModel: MainViewModel) {
         with(binding) {
             if (day <= 0) {
                 tvDay.visibility = View.GONE

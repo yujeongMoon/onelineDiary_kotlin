@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.onelinediary_kotlin.Utility.Utility
 import com.example.onelinediary_kotlin.adapter.viewholder.MainMoodViewHolder
 import com.example.onelinediary_kotlin.databinding.ViewholderMoodItemBinding
-import com.example.onelinediary_kotlin.viewmodel.DiaryViewModel
+import com.example.onelinediary_kotlin.viewmodel.MainViewModel
 
-class MainMoodAdapter(private val year: Int, private val month: Int, private val viewModel: DiaryViewModel) : RecyclerView.Adapter<MainMoodViewHolder>() {
+class MainMoodAdapter(private val year: Int, private val month: Int, private val viewModel: MainViewModel) : RecyclerView.Adapter<MainMoodViewHolder>() {
 
      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainMoodViewHolder {
         val binding = ViewholderMoodItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

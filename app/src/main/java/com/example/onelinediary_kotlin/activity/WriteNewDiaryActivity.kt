@@ -13,9 +13,9 @@ import com.example.onelinediary_kotlin.R
 import com.example.onelinediary_kotlin.Utility.Utility
 import com.example.onelinediary_kotlin.adapter.SelectMoodAdapter
 import com.example.onelinediary_kotlin.databinding.ActivityWriteNewDiaryBinding
-import com.example.onelinediary_kotlin.dto.Mood
 import com.example.onelinediary_kotlin.entity.Diary
-import com.example.onelinediary_kotlin.viewmodel.DiaryViewModel
+import com.example.onelinediary_kotlin.viewmodel.MainViewModel
+import com.example.onelinediary_kotlin.viewmodel.NewDiaryViewModel
 import kotlin.properties.Delegates
 
 class WriteNewDiaryActivity : AppCompatActivity() {
@@ -30,13 +30,13 @@ class WriteNewDiaryActivity : AppCompatActivity() {
 
     private var adapter: SelectMoodAdapter? = null
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint("SimpleDateFormat", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWriteNewDiaryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewModel: DiaryViewModel by viewModels()
+        val viewModel: NewDiaryViewModel by viewModels()
 
         intent?.also {
             selectedYear = it.getIntExtra("year", Utility.getYear())
@@ -44,12 +44,12 @@ class WriteNewDiaryActivity : AppCompatActivity() {
             selectedDay = it.getIntExtra("day", Utility.getDay())
         }
 
-        if (adapter == null)
-            adapter = SelectMoodAdapter(viewModel)
-        binding.emojiSelectRecyclerview.layoutManager = LinearLayoutManager(this@WriteNewDiaryActivity, RecyclerView.HORIZONTAL, false)
-        binding.emojiSelectRecyclerview.adapter = adapter
-
         with(binding) {
+
+            if (adapter == null)
+                adapter = SelectMoodAdapter(viewModel)
+            binding.emojiSelectRecyclerview.layoutManager = LinearLayoutManager(this@WriteNewDiaryActivity, RecyclerView.HORIZONTAL, false)
+            binding.emojiSelectRecyclerview.adapter = adapter
 
             todayDate.text = getString(R.string.reporting_date, selectedYear.toString(), selectedMonth.toString(), selectedDay.toString())
 
@@ -62,7 +62,6 @@ class WriteNewDiaryActivity : AppCompatActivity() {
                     day = selectedDay
 
                     contents = binding.diaryContents.text.toString()
-                    mood = "love"
                 }
 
                 val intent = Intent().apply {
@@ -70,10 +69,13 @@ class WriteNewDiaryActivity : AppCompatActivity() {
                 }
                 setResult(RESULT_OK, intent)
                 viewModel.insertDiary(diary)
+                finish()
             }
         }
 
-        viewModel.emojiStatus.observe(this) {
+        viewModel.clickedEmoji.observe(this) {
+            diary.mood = it
+            adapter?.notifyDataSetChanged()
         }
     }
 }

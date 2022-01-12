@@ -2,8 +2,6 @@ package com.example.onelinediary_kotlin.Utility
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.example.onelinediary_kotlin.R
-import com.example.onelinediary_kotlin.dto.Mood
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -88,16 +86,6 @@ class Utility {
             val date2 = dataFormat.parse(getToday("yyyy년 M월 d일"))
 
             return date1 <= date2
-        }
-        
-        private val emojiArray = arrayOf("love", "happy", "smile", "shy", "thinking", "laughing", "nervous", "angry", "sad", "sick", "dd")
-
-        fun initEmojiStatus() : ArrayList<Mood> {
-            val emojiList = ArrayList<Mood>()
-            for (emoji in emojiArray)
-                emojiList.add(Mood(emoji = emoji))
-
-            return emojiList
         }
     }
 }

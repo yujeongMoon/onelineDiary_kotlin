@@ -4,10 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.onelinediary_kotlin.R
 import com.example.onelinediary_kotlin.Utility.Utility
 import com.example.onelinediary_kotlin.database.DiaryRepository
-import com.example.onelinediary_kotlin.dto.Mood
 import com.example.onelinediary_kotlin.entity.Diary
 
 /**
@@ -58,19 +56,9 @@ import com.example.onelinediary_kotlin.entity.Diary
  * repository를 사용하려면 커스텀 팩토리를 사용해서 뷰모델을 사용하거나 AndroidViewModel을 사용해야함?
  */
 
-class DiaryViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = DiaryRepository.getInstance(application)
-
-    // TODO 일기 작성화면에서 이모지 클릭 상태 변화 저장
-    // 액티비티가 살아있는 동안 유지되어야하는 겂이기 때문에 저장
-    val emojiStatus = MutableLiveData<List<Mood>>().apply {
-        value = Utility.initEmojiStatus()
-    }
-
-    fun initEmojiStatus() {
-        emojiStatus.value = Utility.initEmojiStatus()
-    }
 
     val allDiary: LiveData<List<Diary>>? = repository?.allDiary
 

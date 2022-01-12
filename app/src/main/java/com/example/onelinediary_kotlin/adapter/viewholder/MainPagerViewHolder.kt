@@ -4,14 +4,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onelinediary_kotlin.adapter.MainMoodAdapter
 import com.example.onelinediary_kotlin.databinding.ViewholderMainDiaryBinding
-import com.example.onelinediary_kotlin.viewmodel.DiaryViewModel
+import com.example.onelinediary_kotlin.viewmodel.MainViewModel
 
 class MainPagerViewHolder(private val binding: ViewholderMainDiaryBinding)
     : RecyclerView.ViewHolder(binding.root) {
 
     private val gridLayoutManager = GridLayoutManager(binding.root.context, 7)
 
-    fun onBind(position: Int, viewModel: DiaryViewModel) {
+    fun onBind(position: Int, viewModel: MainViewModel) {
         val yearWithPosition = position.div(12)
         val monthWithPosition = position.rem(12) + 1
 
